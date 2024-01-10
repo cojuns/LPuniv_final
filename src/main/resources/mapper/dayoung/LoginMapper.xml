@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.lpuniv.dayoung.user.login.dao.LoginDao">
+
+
+<select id="loginIdnPw" resultType="com.project.lpuniv.dayoung.user.login.dto.UserDto">
+    select user_loginId, user_passwd from user where user_loginId = #{user_loginId}
+
+</select>
+
+    <select id="selectById" resultType="com.project.lpuniv.dayoung.user.login.dto.UserDto">
+        select * from user where user_loginId = #{user_loginId}
+    </select>
+    <select id="loginById" resultType="com.project.lpuniv.dayoung.user.login.dto.UserDto">
+        select user_loginId from user where user_loginId = #{user_loginId}
+    </select>
+
+    <select id="loginByPw" resultType="com.project.lpuniv.dayoung.user.login.dto.UserDto">
+        select user_passwd from user where user_loginId = #{user_loginId}
+    </select>
+
+
+    <select id="TypeById" resultType="Integer">
+        select user_tp from user where user_loginId = #{user_loginId}
+    </select>
+
+    <select id="selectDeldate" resultType="com.project.lpuniv.dayoung.user.login.dto.UserDto">
+        select user_deletedate from user where user_loginId=#{user_loginId}
+    </select>
+
+</mapper>

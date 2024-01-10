@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>수강 페이지</title>
+    <link rel="stylesheet" href="/minho/css/lecInfo.css">
+</head>
+<body>
+<th:block th:replace="~{/layout/layout :: setContent(~{this::content})}">
+    <th:block th:fragment="content">
+        <section class="board_wrap">
+            <div class="board_wrap_head">
+                <h1 class="board_title">수강 목록</h1>
+            </div>
+            <div class="board_list" th:each="listenLecDtos: ${listenLecDtos}">
+                <div th:value="${listenLecDtos.occ_title}">
+                    <button class="board_list_Container_toggleButton">[[${listenLecDtos.occ_title}]]</button>
+                </div>
+                <div class="board_list_Container" style="display: none">
+                    <ul>
+                        <li th:text="'현재 진행률: ' + ${listenLecDtos.stud_pg} + '%'"></li>
+                        <li th:if="${listenLecDtos.stud_st == 0}" style="color: red">수료불가</li>
+                        <li th:if="${listenLecDtos.stud_st != 0}" style="color: green">수료가능</li>
+                        <li><a th:href="@{'/listenLec/lecList?occ_NO=' + ${listenLecDtos.occ_NO}}">수강하러 가기</a></li>
+                        <li><a th:href="@{'/amc/amcList?occ_NO=' + ${listenLecDtos.occ_NO}}">과제 정보</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <script src="/minho/js/toggleList.js"></script>
+    </th:block>
+</th:block>
+</body>
+</html>
